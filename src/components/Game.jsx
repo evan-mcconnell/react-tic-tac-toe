@@ -6,17 +6,10 @@ import c from './../constants';
 class Game extends React.Component {
   constructor(props) {
     super(props);
-    // this.props = {
-    //   history: [{
-    //     squares: Array(9).fill(null),
-    //   }],
-    //   stepNumber: 0,
-    //   xIsNext: true,
-    // }
   }
 
-
   handleClick(i) {
+    console.log("i", i)
     const history = this.props.history.slice(0, this.props.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
@@ -24,7 +17,7 @@ class Game extends React.Component {
     if (this.calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.props.stepNumber % 2 === 0? 'X' : 'O';
+    squares[i] = this.props.stepNumber % 2 === 0 ? 'X' : 'O';
     let newSquares = {squares: squares}
     let action = {
       type: c.SQUARE_CLICK,
@@ -43,6 +36,10 @@ class Game extends React.Component {
       step: step
     }
     dispatch(action);
+  }
+
+  computerMove() {
+
   }
 
   calculateWinner(squares) {
